@@ -3,9 +3,9 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 const Login = () => import('views/Login/Login')
-const  ManageHome = () => import('views/ManageHome/ManageHome')
-const MUser = () => import('views/ManageHome/childrencpn/MUser')
-const Users = () => import('views/ManageHome/childrencpn/Users')
+const Home = () => import('views/home/Home')
+const MUser = () => import('views/home/childrencpn/MUser')
+const Users = () => import('components/Users')
   const routes = [
     {
       path: '',
@@ -16,8 +16,8 @@ const Users = () => import('views/ManageHome/childrencpn/Users')
       component: Login
     },
     {
-      path: '/managehome',
-      component: ManageHome,
+      path: '/home',
+      component: Home,
       redirect: '/muser',
       children: [
         {

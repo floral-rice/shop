@@ -53,9 +53,9 @@
 </template>
 
 <script>
-  import {getMenuList} from 'network/manageHome'
+  import {getMenuList} from 'network/home'
   export default {
-    name: "ManageHome",
+    name: "Home",
     data() {
       return {
         menulist: [],

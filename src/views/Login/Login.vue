@@ -78,8 +78,8 @@
             // 所以将 token 保存在 sessionStorage 中
             window.sessionStorage.setItem('token', res.data.token)
             // console.log(window.sessionStorage.getItem('token'));
-            //2. 通过编程式导航跳转到后台主页，路由地址是 /ManageHome
-            this.$router.push('/managehome')
+            //2. 通过编程式导航跳转到后台主页，路由地址是 /home
+            this.$router.push('/home')
           })
         })
       }

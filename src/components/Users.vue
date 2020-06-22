@@ -100,7 +100,7 @@
 </template>
 
 <script>
-  import {getUserList, putState} from 'network/manageHome'
+  import {getUserList, putState} from 'network/users'
   export default {
     name: "Users",
     data() {
