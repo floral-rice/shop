@@ -1,5 +1,4 @@
 <template>
-  <div class="manage-home">
     <el-container class="home-container">
       <el-header>
         <div class="left">
@@ -20,8 +19,10 @@
           collapse:是否开启折叠，collapse-transition是否开启折叠动画
           -->
           <el-menu background-color="#333744" text-color="#fff"
+                   active-text-color="#409EFF"
                    unique-opened :collapse="isCollapse"
-                   :collapse-transition="false" router :default-active="activePath">
+                   :collapse-transition="false" router
+                   :default-active="activePath">
             <!--一级菜单的内容-->
             <el-submenu :index="item.id + ''" v-for="item in menulist"
                         :key="item.id">
@@ -38,7 +39,7 @@
                     <!--使用事件监听路由跳转-->
                     <!--<span @click="goPath(subItem.path)">{{subItem.authName}}</span>-->
                     <!--使用element-ui的router定义的路由跳转-->
-                    <span @click="goPath(subItem.path)">{{subItem.authName}}</span>
+                    <span>{{subItem.authName}}</span>
                   </template>
                 </el-menu-item>
             </el-submenu>
@@ -49,7 +50,6 @@
         </el-main>
       </el-container>
     </el-container>
-  </div>
 </template>
 
 <script>
@@ -71,7 +71,7 @@
       }
     },
     created() {
-      this._getMenuList()
+      this.getToMenuList()
     },
     methods: {
       //1.事件监听相关
@@ -94,7 +94,7 @@
       },
 
     // 2.网络请求相关
-      _getMenuList() {
+      getToMenuList() {
         getMenuList().then(res => {
           this.menulist = res.data
         })
@@ -104,9 +104,6 @@
 </script>
 
 <style lang="less" scoped>
-  .manage-home {
-    height: 100%;
-  }
   .home-container {
     height: 100%;
   }

@@ -5,7 +5,10 @@ Vue.use(VueRouter)
 const Login = () => import('views/Login/Login')
 const Home = () => import('views/home/Home')
 const MUser = () => import('views/home/childrencpn/MUser')
-const Users = () => import('components/Users')
+const Users = () => import('components/users/Users')
+const Rights = () => import('components/power/Rights')
+const Roles = () => import('components/power/Roles')
+const Categories = () => import('components/goods/Categories')
   const routes = [
     {
       path: '',
@@ -27,6 +30,18 @@ const Users = () => import('components/Users')
         {
           path: '/users',
           component: Users
+        },
+        {
+          path: '/rights',
+          component: Rights
+        },
+        {
+          path: '/roles',
+          component: Roles
+        },
+        {
+          path: '/categories',
+          component: Categories
         }
       ]
     }

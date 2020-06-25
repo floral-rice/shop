@@ -59,8 +59,12 @@
                        @click="removeUserById(scope.row.id)">
             </el-button>
             <!--角色分配按钮-->
-            <el-button type="warning" icon="el-icon-setting" size="mini">
-            </el-button>
+            <el-tooltip class="item" effect="dark" content="分配角色"
+                        placement="top" :enterable="false">
+              <el-button type="warning" icon="el-icon-setting"
+                         size="mini" @click="setRole(scope.row)">
+              </el-button>
+            </el-tooltip>
           </template>
         </el-table-column>
       </el-table>
@@ -107,7 +111,6 @@
         </el-button>
       </span>
     </el-dialog>
-
     <!--修改用户对话框-->
     <el-dialog title="修改用户" :visible.sync="editDialogVisible"
                width="50%" @close="editDialogClosed">
@@ -128,13 +131,33 @@
       <el-button type="primary" @click="editUserInfo(editForm)">确 定</el-button>
       </span>
     </el-dialog>
+    <!--分配角色对话框-->
+    <el-dialog title="分配角色" :visible.sync="setRoleDialogVisible"
+            width="50%" @close="setRoleDialogClosed">
+      <div>
+        <p>当前的用户：{{userInfo.username}}</p>
+        <p>当前的角色：{{userInfo.role_name}}</p>
+        <p>分配新角色：
+          <el-select v-model="selectedRoleId" placeholder="请选择">
+            <el-option v-for="item in rolesList" :key="item.id"
+                       :label="item.roleName" :value="item.id">
+            </el-option>
+          </el-select>
+        </p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
   import {
-    getUserList, putState, addUser,
-    selectUser, putUser, deleteUser} from 'network/users'
+    getUserList, putState, addAUser,
+    selectUser, putUser, deleteUser, setRole} from 'network/users'
+  import {getRoles} from 'network/roles'
   export default {
     name: "Users",
     data() {
@@ -212,7 +235,15 @@
             {required: true, message: '请输入手机号', trigger: 'blur'},
             {validator: checkMobile, trigger: 'blur'}
           ]
-        }
+        },
+        //分配角色对话框的显示与隐藏
+        setRoleDialogVisible: false,
+        // 需要被分配角色的用户信息
+        userInfo: {},
+        // 所有角色的数据列表
+        rolesList: [],
+        // 已选中的角色Id值
+        selectedRoleId: ''
       }
     },
     created() {
@@ -268,7 +299,7 @@
         this.$refs.addFormRef.validate(valid => {
           if (!valid) return
         //  发起网络请求
-          addUser(this.addForm).then(res => {
+          addAUser(this.addForm).then(res => {
             // 
             if (res.meta.status !== 201) return this.$message.error('添加用户失败')
             this.$message.success('添加用户成功')
@@ -324,6 +355,44 @@
             this._getUserList(this.queryInfo)
           })
         }).catch(err => err)
+      },
+      //分配角色按钮点击,将用户的信息作为参数传入
+      setRole(userInfo) {
+        // 显示对话框
+        // console.log(userInfo);
+        // 保存用户的信息
+        this.userInfo = userInfo
+        //发起数据请求,获取角色数据
+        getRoles().then(res => {
+          // console.log(res);
+          if (res.meta.status !== 200) return this.$message.error('获取角色列表失败')
+          this.rolesList = res.data
+        })
+        this.setRoleDialogVisible = true
+      },
+      //点击确定按钮,发送数据请求分配角色
+      saveRoleInfo(){
+      //  发送数据请求需要用户id和角色id,
+      // 用userInfo中的用户id和选中角色id:selectedRoleId
+        const info = {
+          id: this.userInfo.id,
+          rid: this.selectedRoleId
+        }
+        setRole(info).then(res => {
+          // console.log(res);
+          if (res.meta.status !==200) return this.$message.error('分配角色失败')
+          this.$message.success('分配角色成功')
+          //刷新用户列表
+          this._getUserList(this.queryInfo)
+          //关闭对话框
+          this.setRoleDialogVisible = false
+        })
+      },
+      //关闭分配角色对话框
+      setRoleDialogClosed() {
+        //将之前选中的角色id和需要被分配角色的用户信息清空
+        this.selectedRoleId = ''
+        this.userInfo = {}
       }
      }
   }

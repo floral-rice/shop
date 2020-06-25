@@ -15,7 +15,7 @@ export function putState(uId, type) {
   })
 }
 //添加用户
-export function addUser(addForm) {
+export function addAUser(addForm) {
   return request({
     method: 'post',
     url: 'users',
@@ -50,5 +50,15 @@ export function deleteUser(id) {
   return request({
     method: 'delete',
     url: 'users/' + id
+  })
+}
+// 分配用户角色
+export function setRole(info) {
+  return request({
+    method: 'put',
+    url: `users/${info.id}/role`,
+    data: {
+      rid: info.rid
+    }
   })
 }
