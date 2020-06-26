@@ -24,7 +24,9 @@
                     :key="item1.id">
               <!--一级权限展示区-->
               <el-col :span="5">
-                <el-tag closable @close="removeRightById(scope.row, item1.id)">{{item1.authName}}</el-tag>
+                <el-tag closable @close="removeRightById(scope.row, item1.id)">
+                  {{item1.authName}}
+                </el-tag>
                 <i class="el-icon-caret-right"></i>
               </el-col>
               <!--二级、三级权限展示区-->

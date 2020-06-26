@@ -298,7 +298,7 @@
           // console.log(res);
           // console.log(info);
           removeCate(id).then(res => {
-            console.log(res);
+            // console.log(res);
             if (res.meta.status !== 200) return this.$message.error('删除分类失败')
             this._getCateGory()
             this.$message.success('删除分类成功')

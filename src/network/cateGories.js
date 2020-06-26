@@ -1,5 +1,6 @@
 import {request} from "./axios";
 
+//商品分类数据列表
 export function getCateGory(info) {
   return request({
     url: 'categories',
