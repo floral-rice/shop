@@ -10,6 +10,8 @@ const Rights = () => import('components/power/Rights')
 const Roles = () => import('components/power/Roles')
 const Categories = () => import('components/goods/Categories')
 const Params = () => import('components/goods/Params')
+const GoodsList = () => import('components/goods/GoodsList')
+const AddGoods = () => import('components/goods/childrencpn/AddGoods')
   const routes = [
     {
       path: '',
@@ -47,6 +49,14 @@ const Params = () => import('components/goods/Params')
         {
           path: '/params',
           component: Params
+        },
+        {
+          path: '/goods',
+          component: GoodsList,
+        },
+        {
+          path: '/goods/add',
+          component: AddGoods
         }
       ]
     }

@@ -135,8 +135,9 @@
 </template>
 
 <script>
-  import {getCateGory} from 'network/cateGories'
-  import {getPamarm, additionParams, slectParam, editParam, removeParmas} from 'network/params'
+  import {getCateGory} from 'network/goods/cateGories'
+  import {getPamarm, additionParams, slectParam, editParam, removeParmas}
+  from 'network/goods/params'
   export default {
     name: "Params",
     data() {
@@ -327,7 +328,8 @@
       },
       //  文本框失去焦点，或摁下了 Enter 都会触发
       handleInputConfirm(row) {
-        //如果文本框内的值为空，则将inputValue设置为‘’(为防止空格占长度)，并关闭对话框
+        //如果文本框内的值为空，则将inputValue设置为‘’(为防止空格占长度)，
+        // 并关闭对话框
         if (row.inputValue.trim().length === 0) {
           row.inputValue = ''
           row.inputVisible = false

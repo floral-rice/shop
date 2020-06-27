@@ -156,8 +156,8 @@
 <script>
   import {
     getUserList, putState, addAUser,
-    selectUser, putUser, deleteUser, setRole} from 'network/users'
-  import {getRoles} from 'network/roles'
+    selectUser, putUser, deleteUser, setRole} from 'network/users/users'
+  import {getRoles} from 'network/power/roles'
   export default {
     name: "Users",
     data() {

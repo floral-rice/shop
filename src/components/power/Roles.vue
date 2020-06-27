@@ -135,8 +135,8 @@
 <script>
   import {
     getRoles, addRoles, selectRoles,
-    editRoles, deleteRole, removeRight, setRight} from 'network/roles'
-  import {getrights} from 'network/rights'
+    editRoles, deleteRole, removeRight, setRight} from 'network/power/roles'
+  import {getrights} from 'network/power/rights'
   export default {
     name: "Roles",
     data() {
@@ -339,7 +339,7 @@
         // console.log(keys);
         // console.log(this.$refs.treeRef.getCheckedKeys());
         // console.log(...this.$refs.treeRef.getHalfCheckedKeys());
-        //以小数点隔开
+        //以小数点隔开,变为字符串
         const idStr = keys.join(',')
         // console.log(idStr);
         const info = {

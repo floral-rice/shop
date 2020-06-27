@@ -1,4 +1,4 @@
-import {request} from "./axios"
+import {request} from "../axios"
 //角色列表
 export function getRoles() {
   return request({

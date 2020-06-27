@@ -1,4 +1,4 @@
-import {request} from "./axios";
+import {request} from "../axios";
 
 // 获取用户列表
 export function getUserList(queryInfo) {

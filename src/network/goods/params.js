@@ -1,4 +1,4 @@
-import {request} from "./axios";
+import {request} from "../axios";
 
 //参数列表
 export function getPamarm(info) {

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import {getrights} from 'network/rights'
+  import {getrights} from 'network/power/rights'
   export default {
     name: "Rights",
     data() {

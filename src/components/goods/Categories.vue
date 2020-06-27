@@ -99,7 +99,9 @@
 
 <script>
 
-  import {getCateGory, additionCate, editCate, removeCate} from 'network/cateGories'
+  import
+  {getCateGory, additionCate, editCate, removeCate}
+  from 'network/goods/cateGories'
   export default {
     name: "Categories",
     data() {
