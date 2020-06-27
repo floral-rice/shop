@@ -12,6 +12,8 @@ const Categories = () => import('components/goods/Categories')
 const Params = () => import('components/goods/Params')
 const GoodsList = () => import('components/goods/GoodsList')
 const AddGoods = () => import('components/goods/childrencpn/AddGoods')
+const Orders = () => import('components/orders/Orders')
+const Reports = () => import('components/reports/Reports')
   const routes = [
     {
       path: '',
@@ -57,6 +59,14 @@ const AddGoods = () => import('components/goods/childrencpn/AddGoods')
         {
           path: '/goods/add',
           component: AddGoods
+        },
+        {
+          path: '/orders',
+          component: Orders
+        },
+        {
+          path: '/reports',
+          component: Reports
         }
       ]
     }
